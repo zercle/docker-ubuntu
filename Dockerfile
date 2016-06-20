@@ -24,6 +24,7 @@ RUN apt-get -y install openssl software-properties-common wget curl git nano ope
 RUN apt-get autoclean
 
 COPY ./files /
+RUN chmod +x /root/run-server.sh
 
 EXPOSE 22
 
