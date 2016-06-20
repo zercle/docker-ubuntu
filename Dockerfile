@@ -28,3 +28,5 @@ COPY ./files /
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
+
+ENTRYPOINT ["/root/run-server.sh"]
