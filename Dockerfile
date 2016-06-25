@@ -23,6 +23,8 @@ RUN apt-get -y install openssl software-properties-common wget curl git nano ope
 # Clean file
 RUN apt-get autoclean
 
+RUN sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
+
 COPY ./files /
 RUN chmod +x /root/run-server.sh
 
