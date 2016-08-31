@@ -1,33 +1,40 @@
 FROM ubuntu:latest
 MAINTAINER bouroo <bouroo@gmail.com>
 
-ENV TERM xterm
-ENV DEBIAN_FRONTEND noninteractive
+ARG	timezone=Asia/Bangkok
+ENV	TERM xterm
+ENV	DEBIAN_FRONTEND noninteractive
 
-RUN locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-ENV TZ Asia/Bangkok
+ENV	LANG en_US.UTF-8
+ENV	LC_ALL en_US.UTF-8
+ENV	TZ Asia/Bangkok
 
 # Change root password
-RUN echo "root:P@ssw0rd" | chpasswd
+RUN	echo "root:P@ssw0rd" | chpasswd
+
+# Change locale
+RUN	locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8 && \
+	echo $timezone > /etc/timezone && \
+	cp /usr/share/zoneinfo/$timezone /etc/localtime && \
+	dpkg-reconfigure tzdata
 
 # Add public DNS
-CMD "sh" "-c" "echo nameserver 64.6.64.6 > /etc/resolv.conf"
-CMD "sh" "-c" "echo nameserver 8.8.8.8 >> /etc/resolv.conf"
+RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
+	echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 
 # Add basic package 
-RUN apt-get update && apt-get -y dist-upgrade
-RUN apt-get -y install openssl software-properties-common wget curl git nano openssh-server htop zsh apt-utils supervisor
+RUN	apt-get update && apt-get -y dist-upgrade
+RUN	apt-get -y install openssl software-properties-common wget curl git nano openssh-server htop zsh apt-utils cron && \
+	systemctl enable ssh.service
 
 # Clean file
-RUN apt-get autoclean
+RUN	apt-get autoclean
 
-RUN sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
+RUN	sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
 
-COPY ./files /
-RUN chmod +x /root/run-server.sh
+COPY	./files /
+RUN	chmod +x /root/entrypoint.sh
 
 EXPOSE 22
 
-ENTRYPOINT ["/root/run-server.sh"]
+ENTRYPOINT ["/root/entrypoint.sh"]
