@@ -7,7 +7,7 @@ ENV	DEBIAN_FRONTEND noninteractive
 
 ENV	LANG en_US.UTF-8
 ENV	LC_ALL en_US.UTF-8
-ENV	TZ Asia/Bangkok
+ENV	TZ $timezone
 
 # Change root password
 RUN	echo "root:P@ssw0rd" | chpasswd
