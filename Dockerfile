@@ -24,7 +24,18 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 
 # Add basic package 
 RUN	apt-get update && apt-get -y dist-upgrade
-RUN	apt-get -y install openssl software-properties-common wget curl git nano openssh-server htop zsh apt-utils cron && \
+RUN	apt-get -y install \
+		openssl \
+		software-properties-common  \
+		wget  \
+		curl  \
+		git  \
+		nano  \
+		openssh-server  \
+		htop  \
+		zsh  \
+		apt-utils  \
+		cron && \
 	systemctl enable ssh.service
 
 # Clean file
