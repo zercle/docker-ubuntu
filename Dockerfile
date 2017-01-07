@@ -1,4 +1,4 @@
-# Version 16.04.1
+# Ubuntu 16.04.1
 FROM ubuntu:latest
 MAINTAINER bouroo <bouroo@gmail.com>
 
