@@ -37,6 +37,9 @@ RUN	apt -y install \
 		htop  \
 		zsh  \
 		apt-utils  \
+		iputils-ping \
+		traceroute \
+		dnsutils \
 		genisoimage \
 		cron && \
 	systemctl enable ssh.service
