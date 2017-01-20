@@ -28,15 +28,18 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 RUN	apt update && apt -y full-upgrade
 RUN	apt -y install \
 		openssl \
-		software-properties-common  \
-		wget  \
-		curl  \
-		git  \
-		nano  \
-		openssh-server  \
-		htop  \
-		zsh  \
-		apt-utils  \
+		software-properties-common \
+		wget \
+		curl \
+		git \
+		nano \
+		openssh-server \
+		htop \
+		zsh \
+		apt-utils \
+		iputils-ping \
+		traceroute \
+		dnsutils \
 		genisoimage \
 		cron && \
 	systemctl enable ssh.service

@@ -11,8 +11,12 @@ nano
 openssh-server
 htop
 zsh
-apt-utils
-supervisor
+apt-utils 
+iputils-ping
+traceroute
+dnsutils
+genisoimage
+cron
 
 # user pass
 root:P@ssw0rd
