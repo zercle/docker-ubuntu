@@ -16,3 +16,11 @@ supervisor
 
 # user pass
 root:P@ssw0rd
+
+## Run
+
+	docker run -d \
+	--restart=always \
+	-h ubuntu \
+	--name ubuntu \
+	zercle/docker-ubuntu
