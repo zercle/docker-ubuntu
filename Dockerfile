@@ -1,4 +1,4 @@
-# Ubuntu 16.04.1
+# Ubuntu 16.04.2
 FROM ubuntu:latest
 MAINTAINER bouroo <bouroo@gmail.com>
 
@@ -28,6 +28,7 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 RUN	apt update && apt -y full-upgrade
 RUN	apt -y install \
 		openssl \
+		net-tools \
 		software-properties-common \
 		wget \
 		curl \
