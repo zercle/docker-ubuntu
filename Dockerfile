@@ -14,7 +14,7 @@ ENV	TZ $timezone
 RUN	echo "root:P@ssw0rd" | chpasswd
 
 # Change locale
-RUN apt update && apt -y install locales && \
+RUN apt update && apt -y install locales tzdata && \
 	locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8 && \
 	update-locale en_US.UTF-8 && \
 	echo $timezone > /etc/timezone && \
