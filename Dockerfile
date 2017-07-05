@@ -49,6 +49,7 @@ RUN	apt -y install \
 # Clean file
 RUN	apt-get autoclean
 
+RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 RUN	sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
 
 COPY	./files /
