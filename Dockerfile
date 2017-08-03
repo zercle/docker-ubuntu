@@ -14,16 +14,16 @@ ENV	TZ $timezone
 RUN	echo "root:P@ssw0rd" | chpasswd
 
 # Change locale
-RUN apt update && apt -y install locales tzdata && \
-	locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8 && \
-	update-locale en_US.UTF-8 && \
-	echo $timezone > /etc/timezone && \
-	cp /usr/share/zoneinfo/$timezone /etc/localtime && \
-	dpkg-reconfigure tzdata
+RUN apt update && apt -y install locales tzdata \
+	&& locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8 \
+	&& update-locale en_US.UTF-8 \
+	&& echo $timezone > /etc/timezone \
+	&& cp /usr/share/zoneinfo/$timezone /etc/localtime \
+	&& dpkg-reconfigure tzdata
 
 # Add public DNS
-RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
-	echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf \
+	&& echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 
 # Add basic package 
 RUN	apt update && apt -y full-upgrade
@@ -43,8 +43,8 @@ RUN	apt -y install \
 		traceroute \
 		dnsutils \
 		genisoimage \
-		cron && \
-	systemctl enable ssh.service
+		cron \
+	&& systemctl enable ssh.service
 
 # Clean file
 RUN	apt-get autoclean
