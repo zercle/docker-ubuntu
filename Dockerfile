@@ -44,13 +44,16 @@ RUN	apt -y install \
 		dnsutils \
 		genisoimage \
 		cron \
+		unattended-upgrades \
 	&& systemctl enable ssh.service
 
 # Clean file
 RUN	apt-get autoclean
 
-RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
-RUN	sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
+RUN echo 'APT::Periodic::Update-Package-Lists "1";' > /etc/apt/apt.conf.d/20auto-upgrades \
+	&& echo 'APT::Periodic::Unattended-Upgrade "1";' >> /etc/apt/apt.conf.d/20auto-upgrades \
+	&& echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections \
+	&& sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
 
 COPY	./files /
 RUN	chmod +x /root/entrypoint.sh
