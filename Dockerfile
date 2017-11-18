@@ -1,6 +1,6 @@
-# Ubuntu 16.04.2
+# Ubuntu 16.04.3
 FROM ubuntu:latest
-MAINTAINER bouroo <bouroo@gmail.com>
+MAINTAINER kawin <kawinv@zercle.technology>
 
 ARG	timezone=Asia/Bangkok
 ENV	TERM xterm
@@ -10,9 +10,6 @@ ENV	LANG en_US.UTF-8
 ENV	LC_ALL en_US.UTF-8
 ENV	TZ $timezone
 
-# Change root password
-RUN	echo "root:P@ssw0rd" | chpasswd
-
 # Change locale
 RUN apt update && apt -y install locales tzdata \
 	&& locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8 \
@@ -20,10 +17,6 @@ RUN apt update && apt -y install locales tzdata \
 	&& echo $timezone > /etc/timezone \
 	&& cp /usr/share/zoneinfo/$timezone /etc/localtime \
 	&& dpkg-reconfigure tzdata
-
-# Add public DNS
-RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf \
-	&& echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 
 # Add basic package 
 RUN	apt update && apt -y full-upgrade
@@ -35,7 +28,6 @@ RUN	apt -y install \
 		curl \
 		git \
 		nano \
-		openssh-server \
 		htop \
 		zsh \
 		apt-utils \
@@ -44,20 +36,15 @@ RUN	apt -y install \
 		dnsutils \
 		genisoimage \
 		cron \
-		unattended-upgrades \
-	&& systemctl enable ssh.service
+		unattended-upgrades
 
 # Clean file
 RUN	apt-get autoclean
 
 RUN echo 'APT::Periodic::Update-Package-Lists "1";' > /etc/apt/apt.conf.d/20auto-upgrades \
 	&& echo 'APT::Periodic::Unattended-Upgrade "1";' >> /etc/apt/apt.conf.d/20auto-upgrades \
-	&& echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections \
-	&& sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|" /etc/ssh/sshd_config
 
 COPY	./files /
-RUN	chmod +x /root/entrypoint.sh
+RUN	chmod +x /docker-entrypoint.sh
 
-EXPOSE 22
-
-ENTRYPOINT ["/root/entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
