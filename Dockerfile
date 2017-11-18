@@ -36,7 +36,8 @@ RUN	apt -y install \
 		dnsutils \
 		genisoimage \
 		cron \
-		unattended-upgrades
+		unattended-upgrades \
+		apt-transport-https
 
 # Clean file
 RUN	apt-get autoclean
