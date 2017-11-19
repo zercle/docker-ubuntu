@@ -37,7 +37,8 @@ RUN	apt -y install \
 		genisoimage \
 		cron \
 		unattended-upgrades \
-		apt-transport-https
+		apt-transport-https \
+		pwgen
 
 # Clean file
 RUN	apt-get autoclean

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-service ssh restart
 service rsyslog restart
 service cron restart
 
