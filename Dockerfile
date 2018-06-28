@@ -1,6 +1,6 @@
-# Ubuntu 16.04.3
+# Ubuntu 18.04
 FROM ubuntu:latest
-MAINTAINER kawin <kawinv@zercle.technology>
+LABEL maintainer="Kawin Viriyaprasopsook <bouroo@gmail.com>"
 
 ARG	timezone=Asia/Bangkok
 ENV	TERM xterm
@@ -21,30 +21,30 @@ RUN apt update && apt -y install locales tzdata \
 # Add basic package 
 RUN	apt update && apt -y full-upgrade
 RUN	apt -y install \
-		openssl \
-		net-tools \
-		software-properties-common \
-		wget \
-		curl \
-		git \
-		nano \
-		htop \
-		zsh \
-		apt-utils \
-		iputils-ping \
-		traceroute \
-		dnsutils \
-		genisoimage \
-		cron \
-		unattended-upgrades \
-		apt-transport-https \
-		pwgen
+	openssl \
+	net-tools \
+	software-properties-common \
+	wget \
+	curl \
+	git \
+	nano \
+	htop \
+	zsh \
+	apt-utils \
+	iputils-ping \
+	traceroute \
+	dnsutils \
+	genisoimage \
+	cron \
+	unattended-upgrades \
+	apt-transport-https \
+	pwgen
 
 # Clean file
 RUN	apt-get autoclean
 
 RUN echo 'APT::Periodic::Update-Package-Lists "1";' > /etc/apt/apt.conf.d/20auto-upgrades \
-	&& echo 'APT::Periodic::Unattended-Upgrade "1";' >> /etc/apt/apt.conf.d/20auto-upgrades \
+	&& echo 'APT::Periodic::Unattended-Upgrade "1";' >> /etc/apt/apt.conf.d/20auto-upgrades
 
 COPY	./files /
 RUN	chmod +x /docker-entrypoint.sh
