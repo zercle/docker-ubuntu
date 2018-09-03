@@ -1,30 +1,14 @@
 # docker-ubuntu
-Ubuntu with basic packages base for other docker
+ubuntu with basic packages base for other docker
 
-# packages
-openssl
-software-properties-common
-wget
-curl
-git
-nano
-openssh-server
-htop
-zsh
-apt-utils 
-iputils-ping
-traceroute
-dnsutils
-genisoimage
-cron
+* `latest` [(Dockerfile)](https://github.com/zercle/docker-ubuntu/blob/master/Dockerfile)
 
-# user pass
-root:P@ssw0rd
+[![dockeri.co](http://dockeri.co/image/zercle/docker-ubuntu)](https://registry.hub.docker.com/zercle/docker-ubuntu/)
 
-## Run
+[![](https://images.microbadger.com/badges/image/zercle/docker-ubuntu.svg)](https://microbadger.com/images/zercle/php-fpm "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/zercle/docker-ubuntu.svg)](https://microbadger.com/images/zercle/php-fpm "Get your own version badge on microbadger.com")
+[![GitHub issues](https://img.shields.io/github/issues/zercle/docker-ubuntu.svg "GitHub issues")](https://github.com/zercle/docker-ubuntu)
+[![GitHub stars](https://img.shields.io/github/stars/zercle/docker-ubuntu.svg "GitHub stars")](https://github.com/zercle/docker-ubuntu)
 
-	docker run -d \
-	--restart=always \
-	-h ubuntu \
-	--name ubuntu \
-	zercle/docker-ubuntu
+Based on the [Official Ubuntu Docker image](https://hub.docker.com/r/_/ubuntu/ "official image").
+This image add some packages that are necessary in most common use cases for running projects.
