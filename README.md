@@ -5,8 +5,8 @@ ubuntu with basic packages base for other docker
 
 [![dockeri.co](http://dockeri.co/image/zercle/docker-ubuntu)](https://registry.hub.docker.com/zercle/docker-ubuntu/)
 
-[![](https://images.microbadger.com/badges/image/zercle/docker-ubuntu.svg)](https://microbadger.com/images/zercle/php-fpm "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/zercle/docker-ubuntu.svg)](https://microbadger.com/images/zercle/php-fpm "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/zercle/docker-ubuntu.svg)](https://microbadger.com/images/zercle/docker-ubuntu "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/zercle/docker-ubuntu.svg)](https://microbadger.com/images/zercle/docker-ubuntu "Get your own version badge on microbadger.com")
 [![GitHub issues](https://img.shields.io/github/issues/zercle/docker-ubuntu.svg "GitHub issues")](https://github.com/zercle/docker-ubuntu)
 [![GitHub stars](https://img.shields.io/github/stars/zercle/docker-ubuntu.svg "GitHub stars")](https://github.com/zercle/docker-ubuntu)
 
