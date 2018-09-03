@@ -12,11 +12,15 @@ ENV	TZ $timezone
 
 # Change locale
 RUN apt-get update && apt-get -y install locales tzdata \
+	&& sed -i "s/#th_TH.UTF-8/th_TH.UTF-8/" /etc/locale.gen \
+	&& sed -i "s/#en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen \
 	&& locale-gen en_US.UTF-8 && locale-gen th_TH.UTF-8 \
 	&& update-locale en_US.UTF-8 \
 	&& echo $timezone > /etc/timezone \
 	&& cp /usr/share/zoneinfo/$timezone /etc/localtime \
 	&& dpkg-reconfigure tzdata
+
+COPY ./files /
 
 # Add basic package
 RUN	apt-get update && apt-get -y dist-upgrade
@@ -41,12 +45,9 @@ RUN	apt-get -y install \
 	wget \
 	unattended-upgrades \
 	gnupg \
-	zsh \
 	&& apt-get autoclean
 
 RUN echo 'APT::Periodic::Update-Package-Lists "1";' > /etc/apt/apt.conf.d/20auto-upgrades \
 	&& echo 'APT::Periodic::Unattended-Upgrade "1";' >> /etc/apt/apt.conf.d/20auto-upgrades
-
-COPY ./files /
 
 CMD ["bash"]
